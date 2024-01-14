@@ -26,10 +26,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	float ShortPressThreshold;
 
-	/** FX Class that we will spawn when clicking */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
-	UNiagaraSystem* FXCursor;
-
 	/** MappingContext */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputMappingContext* DefaultMappingContext;
@@ -49,8 +45,4 @@ protected:
 
 	/** Input handlers for SetDestination action. */
 	void OnSetDestinationTriggered();
-	void OnSetDestinationCanceled();
-
-private:
-	FVector CachedDestination;
 };

@@ -4,7 +4,6 @@
 #include "Engine/World.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "NiagaraFunctionLibrary.h"
 #include "Engine/LocalPlayer.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
@@ -13,7 +12,6 @@ ANightPlayerController::ANightPlayerController()
 {
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
-	CachedDestination = FVector::ZeroVector;
 
 	PrimaryActorTick.bCanEverTick = true;
 }
@@ -40,8 +38,6 @@ void ANightPlayerController::SetupInputComponent()
 	{
 		// Setup mouse input events
 		EnhancedInputComponent->BindAction(SetDestinationClickAction, ETriggerEvent::Triggered, this, &ANightPlayerController::OnSetDestinationTriggered);
-		EnhancedInputComponent->BindAction(SetDestinationClickAction, ETriggerEvent::Canceled, this, &ANightPlayerController::OnSetDestinationCanceled);
-		EnhancedInputComponent->BindAction(SetDestinationClickAction, ETriggerEvent::Completed, this, &ANightPlayerController::OnSetDestinationCanceled);
 	}
 	else
 	{
@@ -55,29 +51,16 @@ void ANightPlayerController::OnSetDestinationTriggered()
 {
 	// We look for the location in the world where the player has pressed the input
 	FHitResult Hit;
-	bool bHitSuccessful = false;
-	
-	bHitSuccessful = GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, true, Hit);
 	
 	// If we hit a surface, cache the location
-	if (bHitSuccessful)
+	if (GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, true, Hit))
 	{
-		CachedDestination = Hit.Location;
+		APawn* ControlledPawn = GetPawn();
+		if (ControlledPawn != nullptr)
+		{
+			FVector WorldDirection = (Hit.Location - ControlledPawn->GetActorLocation()).GetSafeNormal();
+			ControlledPawn->AddMovementInput(WorldDirection, 1.0, false);
+			UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, Hit.Location);
+		}
 	}
-	
-	// Move towards mouse pointer or touch
-	APawn* ControlledPawn = GetPawn();
-	if (ControlledPawn != nullptr)
-	{
-		FVector WorldDirection = (CachedDestination - ControlledPawn->GetActorLocation()).GetSafeNormal();
-		ControlledPawn->AddMovementInput(WorldDirection, 1.0, false);
-	}
-	
-	// 
-}
-
-void ANightPlayerController::OnSetDestinationCanceled()
-{
-	UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, CachedDestination);
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, FXCursor, CachedDestination);
 }
