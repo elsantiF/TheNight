@@ -69,9 +69,8 @@ void APlayerCharacter::Tick(float DeltaSeconds)
 
 void APlayerCharacter::CameraZoom(const FInputActionValue& Value)
 {
-	float ZoomValue = Value.Get<float>();
-
-	CameraBoom->TargetArmLength += ZoomValue * 10;
+	const float ZoomValue = CameraBoom->TargetArmLength + Value.Get<float>() * 10;
+	CameraBoom->TargetArmLength = FMath::Clamp(ZoomValue, MinCameraZoom, MaxCameraZoom);
 }
 
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
