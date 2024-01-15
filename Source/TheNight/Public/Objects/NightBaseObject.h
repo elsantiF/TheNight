@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "NightBaseObject.generated.h"
 
+class UBoxComponent;
 class UWidgetComponent;
 
 UCLASS()
@@ -25,7 +26,10 @@ protected:
 	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Componnets")
-	TObjectPtr<USkeletalMeshComponent> MeshComponent;
+	TObjectPtr<UStaticMeshComponent> MeshComponent;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Componnets")
+	TObjectPtr<UBoxComponent> BoxComponent;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Componnets")
 	TObjectPtr<UWidgetComponent> WidgetText;

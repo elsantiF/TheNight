@@ -3,6 +3,7 @@
 
 #include "Objects/NightBaseObject.h"
 
+#include "Components/BoxComponent.h"
 #include "Components/WidgetComponent.h"
 
 // Sets default values
@@ -14,8 +15,11 @@ ANightBaseObject::ANightBaseObject()
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	RootComponent = Root;
 	
-	MeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComponent"));
+	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
 	MeshComponent->SetupAttachment(RootComponent);
+	
+	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+	BoxComponent->SetupAttachment(RootComponent);
 
 	WidgetText = CreateDefaultSubobject<UWidgetComponent>(TEXT("WidgetText"));
 	WidgetText->SetupAttachment(RootComponent);
