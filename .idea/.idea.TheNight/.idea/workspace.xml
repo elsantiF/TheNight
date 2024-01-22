@@ -14,20 +14,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="332d026f-fb2d-409c-bd63-2ff20b0deaab" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/UndeadPack/SkeletonEnemy/Animations/Anim_AS.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Grave.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_Game/UI/WB_WidgetText.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/EQS/QueryContext_TargetActor.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/EQS/Query_FindNerbyLocation.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/Skeleton/BB_Skeleton.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/Skeleton/BP_Skeleton.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/Skeleton/BP_SkeletonController.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/AI/Skeleton/BT_Skeleton.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/TheNight/Private/Characters/NightAICharacter.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/TheNight/Private/Player/NightAIController.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/TheNight/Public/Characters/NightAICharacter.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/TheNight/Public/Player/NightAIController.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheNight/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheNight/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Materials/M_CobbleStone_Pebble.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Materials/M_CobbleStone_Pebble.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UndeadPack/SkeletonEnemy/Animations/Anim_Idle.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UndeadPack/SkeletonEnemy/Animations/Anim_Idle.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Animations/AB_Lich.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Animations/AB_Lich.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Character.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Character.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Tomb.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Particles/P_Explosion.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/P_Explosion.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Particles/P_Fire.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/P_Fire.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Particles/P_Sparks.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Particles/P_Sparks.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Skeleton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Blueprints/BP_Skeleton.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/_Game/Maps/Prubes.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/Maps/Prubes.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Game/UI/WidgetText.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Game/UI/WidgetText.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/TheNight/PlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/TheNight/PlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/TheNight/Private/Objects/NightBaseObject.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/TheNight/Private/Objects/NightBaseObject.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/TheNight/Public/Objects/NightBaseObject.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/TheNight/Public/Objects/NightBaseObject.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheNight.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/TheNight.uproject" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,8 +200,9 @@
       <workItem from="1704993449683" duration="4925000" />
       <workItem from="1704999735010" duration="304000" />
       <workItem from="1705003860657" duration="4562000" />
-      <workItem from="1705348056346" duration="1129000" />
-      <workItem from="1705350558712" duration="2513000" />
+      <workItem from="1705424000623" duration="919000" />
+      <workItem from="1705438311576" duration="2366000" />
+      <workItem from="1705919270167" duration="4403000" />
     </task>
     <servers />
   </component>

@@ -18,6 +18,8 @@ APlayerCharacter::APlayerCharacter()
 {
 	// Set size for player capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
+	MaxCameraZoom = 1800;
+	MinCameraZoom = 600;
 
 	// Don't rotate character to camera direction
 	bUseControllerRotationPitch = false;
