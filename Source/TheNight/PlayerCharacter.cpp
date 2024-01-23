@@ -10,6 +10,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Interfaces/InteractInterface.h"
 
 DEFINE_LOG_CATEGORY(LogPlayer)
 // Sets default values
@@ -54,6 +55,9 @@ void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &APlayerCharacter::OverlapBegin);
+	GetCapsuleComponent()->OnComponentEndOverlap.AddDynamic(this, &APlayerCharacter::OverlapEnd);
+	
 	//Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
@@ -82,5 +86,30 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent))
 	{
 		EnhancedInputComponent->BindAction(ZoomAction, ETriggerEvent::Triggered, this, &APlayerCharacter::CameraZoom);
+	}
+}
+
+void APlayerCharacter::OverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if(IInteractInterface* InteractInterface = Cast<IInteractInterface>(OtherActor))
+	{
+		if(InteractInterface->Execute_CanInteract(OtherActor))
+		{
+			InteractableActor = OtherActor;
+			InteractInterface->Execute_StartFocus(OtherActor);
+		}
+	}
+}
+
+void APlayerCharacter::OverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if(InteractableActor)
+	{
+		if(IInteractInterface* InteractInterface = Cast<IInteractInterface>(OtherActor)) {
+			InteractInterface->Execute_EndFocus(OtherActor);
+			InteractableActor = nullptr;
+		}
 	}
 }
