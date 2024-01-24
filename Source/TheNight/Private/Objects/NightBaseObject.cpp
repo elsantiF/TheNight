@@ -31,3 +31,26 @@ void ANightBaseObject::BeginPlay()
 	Super::BeginPlay();
 	
 }
+
+bool ANightBaseObject::CanInteract_Implementation()
+{
+	return true;
+}
+
+void ANightBaseObject::StartFocus_Implementation()
+{
+	WidgetText->SetVisibility(true);
+}
+
+void ANightBaseObject::EndFocus_Implementation()
+{
+	WidgetText->SetVisibility(false);
+}
+
+void ANightBaseObject::Interact_Implementation(AActor* OriginActor)
+{
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+	GetWorld()->SpawnActor<AActor>(ActorToSpawn, GetActorLocation(), GetActorRotation(), SpawnParams);
+}
+
