@@ -86,6 +86,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent))
 	{
 		EnhancedInputComponent->BindAction(ZoomAction, ETriggerEvent::Triggered, this, &APlayerCharacter::CameraZoom);
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Completed, this, &APlayerCharacter::Interact);
 	}
 }
 
@@ -110,6 +111,20 @@ void APlayerCharacter::OverlapEnd(UPrimitiveComponent* OverlappedComponent, AAct
 		if(IInteractInterface* InteractInterface = Cast<IInteractInterface>(OtherActor)) {
 			InteractInterface->Execute_EndFocus(OtherActor);
 			InteractableActor = nullptr;
+		}
+	}
+}
+
+void APlayerCharacter::Interact()
+{
+	if(InteractableActor)
+	{
+		if(IInteractInterface* InteractInterface = Cast<IInteractInterface>(InteractableActor))
+		{
+			if(InteractInterface->Execute_CanInteract(InteractableActor))
+			{
+				InteractInterface->Execute_Interact(InteractableActor, this);
+			}
 		}
 	}
 }
